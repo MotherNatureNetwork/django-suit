@@ -117,11 +117,8 @@
                         return false;
                     }
                 }
-            } else if ($(input).hasClass('suit-sortable')) {
-                if (input.defaultValue == input.value && input.value == 0) {
-                    return false;
-                }
             }
+
             return true;
         }
 
