@@ -62,7 +62,7 @@
                 }
             });
         };
-        var updateRedactorScriptContents = function(row) {
+        var update{{ inline_admin_formset.formset.prefix|cut:"-" }}RedactorScriptContents = function(row) {
             var prefix = "{{ inline_admin_formset.formset.prefix }}";
             row.find('script.redactor-widget').each(function() {
                 var div_controls = $(this).prev().parent();
@@ -86,7 +86,7 @@
                 initPrepopulatedFields(row);
                 reinitDateTimeShortCuts();
                 updateSelectFilter();
-                updateRedactorScriptContents(row);
+                update{{ inline_admin_formset.formset.prefix|cut:"-" }}RedactorScriptContents(row);
                 Suit.after_inline.run("{{ inline_admin_formset.formset.prefix }}", row);
             })
         });
