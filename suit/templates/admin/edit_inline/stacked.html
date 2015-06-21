@@ -62,6 +62,18 @@
                 }
             });
         };
+        var updateRedactorScriptContents = function(row) {
+            var prefix = "{{ inline_admin_formset.formset.prefix }}";
+            row.find('script.redactor-widget').each(function() {
+                var div_controls = $(this).prev().parent();
+                var text_area = $(this).prev().find('textarea');
+                text_area.css('display', 'block');
+                div_controls.html('');
+                div_controls.append(text_area);
+                var script_html = "<script class=\"redactor-widget\" type=\"text\/javascript\">$(\"#" + text_area.attr('id') + "\").redactor({\"minHeight\": \"300\"})<\/script>";
+                div_controls.append(script_html);
+            });
+        };
         $(rows).formset({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
             addText: "{% blocktrans with verbose_name=inline_admin_formset.opts.verbose_name|title %}Add another {{ verbose_name }}{% endblocktrans %}",
@@ -74,7 +86,7 @@
                 initPrepopulatedFields(row);
                 reinitDateTimeShortCuts();
                 updateSelectFilter();
-                updateInlineLabel(row);
+                updateRedactorScriptContents(row);
                 Suit.after_inline.run("{{ inline_admin_formset.formset.prefix }}", row);
             })
         });
