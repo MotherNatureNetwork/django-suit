@@ -70,7 +70,7 @@
                 text_area.css('display', 'block');
                 div_controls.html('');
                 div_controls.append(text_area);
-                var script_html = "<script class=\"redactor-widget\" type=\"text\/javascript\">$(\"#" + text_area.attr('id') + "\").redactor({\"minHeight\": \"300\"})<\/script>";
+                var script_html = "<script class=\"redactor-widget " + text_area.attr('id') + "\" type=\"text\/javascript\">$(\"#" + text_area.attr('id') + "\").redactor({\"minHeight\": \"300\"});$(\"script.redactor-widget." + text_area.attr('id') + "\").empty();<\/script>";
                 div_controls.append(script_html);
             });
         };
